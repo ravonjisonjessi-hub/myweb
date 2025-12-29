@@ -1,31 +1,362 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My First Landing Page</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 50px;
-      background: #f4f4f4;
-    }
-    h1 {
-      color: #333;
-    }
-    p {
-      font-size: 18px;
-    }
-    button {
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arcana Travel Agency | The spirit of Indonesia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS STYLES */
+        :root {
+            --primary-gold: #d4af37;
+            --deep-purple: #1a1a2e;
+            --accent-purple: #4834d4;
+            --light-text: #f4f4f4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+            background-color: #fff;
+        }
+
+        h1, h2, .logo {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 10%;
+            background: var(--deep-purple);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: darkred;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            padding: 0 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light-text);
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .btn-nav {
+            padding: 10px 25px;
+            background: transparent;
+            color: var(--primary-gold);
+            border: 1px solid var(--primary-gold);
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.4s;
+        }
+
+        .btn-nav:hover {
+            background: var(--primary-gold);
+            color: var(--deep-purple);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(26, 26, 46, 0.6), rgba(26, 26, 46, 0.6)), 
+                        url('/html/new html/photos/2.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-gold);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Search Bar */
+        .search-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            width: 100%;
+            max-width: 700px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .search-container input {
+            background: transparent;
+            border: none;
+            padding: 10px 20px;
+            width: 80%;
+            outline: none;
+            font-size: 1.1rem;
+            color: white;
+        }
+
+        .search-container input::placeholder {
+            color: #ccc;
+        }
+
+        .btn-search {
+            background: var(--primary-gold);
+            color: var(--deep-purple);
+            border: none;
+            padding: 12px 35px;
+            border-radius: 2px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Destinations Section */
+        .destinations {
+            padding: 6rem 10%;
+            text-align: center;
+            background-color: #fcfcfc;
+        }
+
+        .destinations h2 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--deep-purple);
+        }
+
+        .section-subtitle {
+            font-style: italic;
+            color: #888;
+            margin-bottom: 50px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 0px;
+            overflow: hidden;
+            transition: 0.5s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-align: left;
+            border-bottom: 3px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-15px);
+            border-bottom: 3px solid var(--primary-gold);
+        }
+
+        .card-img {
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            filter: sepia(20%);
+        }
+
+        .card-body {
+            padding: 30px;
+        }
+
+        .card-body h3 {
+            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: var(--deep-purple);
+        }
+
+        .card-body p {
+            font-size: 0.95rem;
+            color: #555;
+            margin-bottom: 20px;
+            height: 60px;
+        }
+
+        .price {
+            color: var(--primary-gold);
+            font-weight: 600;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--deep-purple);
+            color: white;
+            padding: 4rem 10% 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: #555;
+            margin-top: 30px;
+            border-top: 1px solid #2a2a40;
+            padding-top: 30px;
+            letter-spacing: 1px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero-content h1 { font-size: 2.8rem; }
+            .search-container { flex-direction: column; background: rgba(0,0,0,0.5); }
+            .search-container input { width: 100%; text-align: center; margin-bottom: 15px; }
+            .btn-search { width: 100%; }
+        }
+    </style>
 </head>
 <body>
-  <h1>Welcome to My Landing Page 🚀</h1>
-  <p>This is my first website hosted on GitHub Pages.</p>
-  <button>Get Started</button>
+
+    <nav class="navbar">
+        <a href="#" class="logo">ARCANA<span>TRAVEL</span></a>
+        <ul class="nav-links">
+            <li><a href="#home">Destination</a></li>
+            <li><a href="#destinations">Mysteries</a></li>
+            <li><a href="#">Our Story</a></li>
+            <li><a href="#">Visa & Ticket process</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <button class="btn-nav">MEMBER LOGIN</button>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-content">
+            <p>Discover the Soul of Indonesia</p>
+            <h1>Discover the Unseen</h1>
+            
+            <div class="search-container">
+                <input type="text" placeholder="Search your next mystery destination...">
+                <button class="btn-search">Explore</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="destinations" id="destinations">
+        <h2>Curated Expeditions</h2>
+        <p class="section-subtitle">Hand-selected journeys for the sophisticated traveler.</p>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1518391846015-55a9cc003b25?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-body">
+                    <h3>The Hidden Gion</h3>
+                    <p>Wander through the secret lantern-lit alleys of Kyoto's most historic district.</p>
+                    <span class="price">EXCURSION $2,100</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-body">
+                    <h3>Santorini Twilight</h3>
+                    <p>Private villa stays with exclusive access to the island's most secluded caldera views.</p>
+                    <span class="price">EXCURSION $3,400</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1528127269322-539801943592?auto=format&fit=crop&w=600&q=80');"></div>
+                <div class="card-body">
+                    <h3>Emerald Highlands</h3>
+                    <p>A journey through the mist-covered peaks and ancient folklore of Vietnam.</p>
+                    <span class="price">EXCURSION $1,900</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-logo">ARCANA</span>
+        <div class="footer-links">
+            <a href="#">Bespoke Services</a>
+            <a href="#">Travel Insurance</a>
+            <a href="#">Journal</a>
+            <a href="#">Privacy</a>
+        </div>
+        <p>Arcana Travel Agency &copy; 2025</p>
+        <div class="copyright">
+            ESTABLISHED IN SEARCH OF THE EXTRAORDINARY.
+        </div>
+    </footer>
+
 </body>
 </html>
